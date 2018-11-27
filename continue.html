@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+		<script language="javascript">
+			var total=0
+			var sum=new Array(1000,1200,600,736,1107,1205);
+			for(i=0;i<sum.length;i++){
+				document.write("<div>i的值为：  "+i+"\n</div>");
+					if(sum[i]<1000) continue; //不计算小于1000的金额
+					total+=sum[i];
+					document.write("累计和为："+total);
+				}
+				document.write("累计和为："+total);
+        </script>
+</body>
+</html>

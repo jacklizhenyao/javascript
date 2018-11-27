@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		var c="nihao";
+		//函数需要使用关键字function定义
+
+		//1、带参数的函数
+		function myFunction(name,job){
+    alert("Welcome " + name + ", the " + job);
+}
+		//2、有返回值的函数
+		function myFunction()
+{
+    var x=5;
+    return x;
+}
+		//3、退出函数 return
+		function myFunction(a,b)
+{
+    if (a>b)
+    {
+        return;
+    }
+    x=a+b
+}
+		//4、局部的变量，使用var在函数内部定义
+		function myFsunction(b)
+{	var c=b;
+   alert(c);
+}
+		//5、全局的变量
+		 	function test()
+{	
+   //alert(c);
+   z='全局变量';
+   alert(z);
+} 
+	//6、函数表达式  用变量存储函数，同时变量（）调用函数
+	//x为匿名函数，使用变量x直接调用
+	var x = function (a) {alert(a)};
+
+	//7、构造函数
+	var myFunction = new Function("a", "b", "return a * b");
+
+var x = myFunction(4, 3);
+//等价于
+var myFunction = function (a, b) {return a * b}
+
+var x = myFunction(4, 3);
+
+	//8、自调用函数 自己调用自己 自己启动
+	(function () {
+    var x = "Hello!!";
+    alert(x);      // 我将调用自己
+})();
+	
+	//9.函数是对象 函数中可以调用函数的相关属性和方法 
+	function myFunction(a, b) {
+    return arguments.length;//函数的属性
+}
+
+function myFunction(a, b) {
+    return a * b;
+}
+
+//var txt = myFunction.toString();//
+//console.log('nihao');
+	//10、函数的隐式参数 
+	/*函数显式参数在函数定义时列出。
+函数隐式参数在函数调用时传递给函数真正的值。*/
+
+	//如果函数在调用时未提供隐式参数，参数会默认设置为： undefined
+	function myFunction(x, y) {
+    if (y === undefined) {
+          y = 0;
+    } 
+}
+
+function myFunction(x, y) {
+    y = y || 0;//y已经定义，则为true，返回y,否则返回undefined 即未定义
+}
+	//11、Arguments 对象  定义函数时，为指定形式参数  而实际调用时，传入实参 需要通过此对象获取
+	/*JavaScript 函数有个内置的对象 arguments 对象。
+argument 对象包含了函数调用的参数数组。*/
+
+	x = findMax(1, 123, 500, 115, 44, 88);
+ 
+function findMax() {
+    var i, max = arguments[0];
+    
+    if(arguments.length < 2) return max;
+ 
+    for (i = 0; i < arguments.length; i++) {
+        if (arguments[i] > max) {
+            max = arguments[i];
+        }
+    }
+    return max;
+}
+
+
+/*
+JavaScript 变量的生存期
+JavaScript 变量的生命期从它们被声明的时间开始。
+局部变量会在函数运行以后被删除。
+全局变量会在页面关闭后被删除。
+*/
+
+/*
+
+向未声明的 JavaScript 变量分配值
+如果您把值赋给尚未声明的变量，该变量将被自动作为全局变量声明。
+这条语句：
+carname="Volvo";
+将声明一个全局变量 carname，即使它在函数内执行。
+*/
+
+//-----------------------------函数的调用-------------------------------------
+
+	//1、函数作为对象的方法被调用
+
+	var myObject = {
+    firstName:"John",
+    lastName: "Doe",
+    fullName: function () {
+       // return this.firstName + " " + this.lastName;
+       return this;//函数作为对象方法调用，会使得 this 的值成为对象本身。
+    }
+}
+//console.log(myObject.fullName());        // 返回 "John Doe"
+	//2、使用构造函数调用函数
+	// 构造函数:
+function myFunction(arg1, arg2) {
+    this.firstName = arg1;
+    this.lastName  = arg2;
+}
+ 
+// This    creates a new object
+var x = new myFunction("John","Doe");
+x.firstName; 
+
+	//3、作为函数方法调用函数（使用预定义的函数方法定义函数）
+	function myFunction(a, b) {
+    return a * b;
+}
+//call的用法
+myObject = myFunction.call(myObject, 10, 2);     // call() 和 apply() 是预定义的函数方法。 两个方法可用于调用函数，两个方法的第一个参数必须是对象本身。
+function myFunction(a, b) {
+    return a * b;
+}
+myArray = [10,20];
+//apply用法
+myObject = myFunction.apply(myObject, myArray);  // 返回 20
+
+
+//--------------------------------函数的闭包--------------------------------------
+
+/*function add() {
+    var counter = 0;
+    function plus() {counter += 1;}//支持内嵌套函数
+    plus();    
+   // console.log(counter);
+    return counter; 
+}
+
+	add();//1
+	add();//1
+	add();//1*/
+var add = (function () {//函数的自我调用只被执行一次，返回函数表达式
+    var counter = 0;//受匿名函数的作用域保护 只能通过add方法修改
+    return function () {return counter += 1;}//通过函数表达式访问函数中的私有变量，可以访问他的上一层作用域的计数器
+})();
+ 
+add();
+add();
+add();
+	</script>
+
+<p>
+	<button onclick="x('nihao');">点击这里</button>
+</p>	
+
+
+</body>
+</html>
