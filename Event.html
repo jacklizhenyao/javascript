@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <a class="btn" href="#" style="width: 100px;height: 100px;background-color: black">链接1</a>
+    <ul class="artist-list">
+        <li id="li">lizhenyao</li>
+        <li>lizhenyao1</li>
+        <li>lizhenyao2</li>
+    </ul>
+</div>
+<script>
+    //事件
+    //1、可以在元素中，直接使用事件
+    //2、代码与元素分离开
+    //windows.onload()当表单，外部js链接加载完成后，才执行代码 这样可以保证代码正确执行
+
+    window.onload = function () {
+
+        var btn = document.querySelector('.btn');
+        /*  var i = 0;
+         btn.onmouseover = function () {
+         console.log("鼠标经过" + i++);
+         }*/
+        var showMessage = function (event) {
+            console.log(event);
+        }
+        //3、addEventListenner 为对象绑定事件
+        //click 点击事件 showMessage 函数  false 用户捕获
+        btn.addEventListener('click', showMessage, false);
+
+
+        //3、事件的传播
+        var artist_list = document.querySelector('.artist-list');
+        /*   var showText = function (event) {
+         //console.log(event.target.textContent);
+         console.log("用户点击ur");
+         }*/
+        //   artist_list.addEventListener("click", showText, false);
+
+        //3、改变事件的传播方式
+        //（1）从下向上传播 ---冒泡传递
+        /* artist_list.addEventListener("click", showText, false);
+         var li = document.getElementById('li');
+         var showLiMessage = function () {
+         console.log("用户点击了li");
+         }
+         li.addEventListener("click", showLiMessage, false);*/
+
+        //（2）从上向下传递-- 捕获方式
+
+        /*   artist_list.addEventListener("click", showText, true);//开启用户捕获
+         var li = document.getElementById('li');
+         var showLiMessage = function () {
+         console.log("用户点击了li");
+         }
+         li.addEventListener("click", showLiMessage, false);*/
+
+        //4、停止事件的传播
+
+        //无论事件传播的方式是从内到外还是从外到内，我们可以使用回调中的
+        var showText = function (event) {
+            //console.log(event.target.textContent);
+            //  event.stopPropagation();//停止传递事件
+            console.log("用户点击ur");
+        }
+        artist_list.addEventListener("click", showText, true);//开启用户捕获
+        var li = document.getElementById('li');
+        var showLiMessage = function (event) {
+            console.log("用户点击了li");
+        }
+        li.addEventListener("click", showLiMessage, false);
+
+
+    }
+
+</script>
+</body>
+</html>
