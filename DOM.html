@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+</head>
+<body>
+<h1 id="title">this is a title</h1>
+<ul class="artist-list">
+    <li>lizhenyao</li>
+    <li>lizhenyao1</li>
+    <li>lizhenyao2</li>
+</ul>
+<script>
+    //通过文档id获取 元素对象
+    //var title = document.getElementById("title");
+    //console.log(title);
+
+    //使用标签的名称获取 元素对象 对象是数组
+    //var list = document.getElementsByName("li");
+
+    //使用元素查询器querySelectorAll 返回所有元素
+    /*  var listAll = document.querySelectorAll(".artist-list li");
+     console.log(listAll);*/
+
+    //使用元素查询器querySelector 返回一个元素 如果有多个元素返回第一个
+    /* var list = document.querySelector(".artist-list li");
+     console.log(list);*/
+
+    //使用元素中的属性和方法
+    /*  var list = document.querySelector(".artist-list");
+     console.log(list.childElementCount);*/
+
+    //添加元素节点
+    /* var newMember = document.createElement("li");
+     var newTextMember = document.createTextNode("lizhenyao3");
+
+     newMember.appendChild(newTextMember);
+
+     //找到指定元素，在指定元素后面添加子元素
+     document.querySelector(".artist-list").appendChild(newMember);*/
+
+    // 插入元素节点
+    var h3 = document.createElement("h3");
+    h3.innerText = "测试名字";
+
+    var artist = document.querySelector(".artist-list");
+    artist.parentNode.insertBefore(h3,artist)
+
+
+</script>
+</body>
+</html>
